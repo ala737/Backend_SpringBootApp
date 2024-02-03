@@ -1,5 +1,6 @@
 package com.alanouri.employeemanagment.services;
 
+import com.alanouri.employeemanagment.exceptions.UserNotFoundException;
 import com.alanouri.employeemanagment.model.Employee;
 import com.alanouri.employeemanagment.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,8 @@ public class EmployeeService {
         employeeRepo.deleteEmployeeById(id);
     }
 
-    public Employee findEmployeeBuId(Long id){
-        return employeeRepo.findEmployeeById(id).orElseThrow(
-                () -> new UserNotFoundException ("User by id "+id+" was not found"));
+    public Employee findEmployeeBuId(Long id) throws Throwable {
+        return (Employee) employeeRepo.findEmployeeById(id).orElseThrow(
+                () -> new UserNotFoundException("User by id "+id+" was not found"));
     }
 }
