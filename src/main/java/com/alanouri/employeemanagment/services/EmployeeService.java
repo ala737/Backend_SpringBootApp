@@ -40,6 +40,7 @@ public class EmployeeService {
         employeeRepo.deleteEmployeeById(id);
     }
 
+
     public Employee findEmployeeBuId(Long id) throws Throwable {
         return (Employee) employeeRepo.findEmployeeById(id).orElseThrow(
                 () -> new UserNotFoundException("User by id "+id+" was not found"));
